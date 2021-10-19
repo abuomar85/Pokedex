@@ -12,32 +12,51 @@
     }
     //adding new pokemon to the array
     function add(pokemon) {
-      
-      return pokemonList.push(pokemon);
+      //check if  the input has the right type
+      if (
+      typeof pokemon === "object" &&
+      "name" in pokemon &&
+      "height" in pokemon &&
+      "types" in pokemon
+    ) { pokemonList.push(pokemon)}
+    else {
+      console.log("pokemon is not correct");
     }
+    }
+
+    // adding new function to show pokemon details
+    function showDetails(event) {
+
+      console.log(event)
+    }
+    // new function
+    function addListItem(pokemon) {
+      let pokemonList = document.querySelector('.pokemon-list');
+      let listItem = document.createElement('li');
+      let button = document.createElement('button');
+      button.innerText = pokemon.name;
+      button.classList.add('button-class')
+      listItem.appendChild(button);
+      pokemonList.appendChild(listItem);
+
+      //showing the pokemon details when button is clicked
+      button.addEventListener('click', showDetails);
+    }
+
+
     // return the new array with new items
     return {
       add: add,
-      getAll, getAll
+      getAll: getAll,
+      addListItem: addListItem
     };
   })();
+  //adding new pokemon
+  pokemonRepository.add({ name: "Pikachu", height: 3, types: ["electric"] });
+  //console.log(pokemonRepository.getAll());
 
-                  //looping through pokemon array and show the names an height
-  document.write("<h3>Foor loop</h3>")
-  for (var i = 0; i < pokemonRepository.getAll().length; i++) {
-  document.write(pokemonRepository.getAll()[i].name + " (height: "  + pokemonRepository.getAll()[i].height + ") " + "<br>"  );
-  //make a condition to check if pokemon is equal or greater than 20
-  if(pokemonRepository.getAll()[i].height >= 20) {
-    document.write(pokemonRepository.getAll()[i].name + " is realy big");
-  }
-  }
   //looping through array using ForEach
-  document.write("<h3>ForEach loop</h3>")
+
   pokemonRepository.getAll().forEach(function(item){
-    document.write(item.name + " (height: "  + item.height + ") " + "<br>"  );
-    if(item.height >= 20 ) {
-      document.write(item.name + " is realy big");
-    }
-
-
+    pokemonRepository.addListItem(item);
   })
