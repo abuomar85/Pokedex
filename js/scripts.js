@@ -27,7 +27,7 @@
     // adding new function to show pokemon details
     function showDetails(event) {
 
-      console.log(event)
+       console.log(event.target.innerText);
     }
     // new function
     function addListItem(pokemon) {
