@@ -20,11 +20,54 @@
     }
 
     // adding new function to show pokemon details from the api
-    function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+    function showDetails(pokemon) {
+      //create modal container to hold the items and show the details
+      let modalContainer = document.querySelector('#modal-container');
+      modalContainer.innerHTML = '';
+      let modal = document.createElement('div');
+      modal.classList.add('modal');
+      //add close button
+      let closeButtonElement = document.createElement('button');
+      closeButtonElement.classList.add('modal-close');
+      closeButtonElement.innerText = 'Close';
+      //hide the modal when the close button is clicked
+      closeButtonElement.addEventListener('click', hideModal);
+      //show the pokemond details in the modal
+      let titleElement = document.createElement('h1');
+      titleElement.innerText = pokemon.name;
+      let contentElement = document.createElement('p');
+      contentElement.innerText = 'height: '+  pokemon.height;
+      let contentImage = document.createElement('img');
+      contentImage.src = pokemon.imageUrl;
+      modal.appendChild(contentImage);
+      modal.appendChild(closeButtonElement);
+      modal.appendChild(titleElement);
+      modal.appendChild(contentElement);
+      modalContainer.appendChild(modal);
+      modalContainer.classList.add('is-visible');
+    pokemonRepository.loadDetails(pokemon).then(function () {
+      console.log(pokemon);
     });
+    // function to hide the modal
+    function hideModal() {
+    modalContainer.classList.remove('is-visible');
   }
+  // hide the modal if escape button pressed
+  window.addEventListener('keydown', (e) => {
+   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+     hideModal();
+   }
+ });
+// hide the modal if user clicked outside the modal
+ modalContainer.addEventListener('click', (e) => {
+   let target = e.target;
+   if (target === modalContainer) {
+     hideModal();
+   }
+ });
+  }
+
+
     // adding new items
     function addListItem(pokemon) {
       let pokemonList = document.querySelector('.pokemon-list');
