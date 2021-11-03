@@ -33,6 +33,8 @@
       //hide the modal when the close button is clicked
       closeButtonElement.addEventListener('click', hideModal);
       //show the pokemond details in the modal
+
+    pokemonRepository.loadDetails(pokemon).then(function () {
       let titleElement = document.createElement('h1');
       titleElement.innerText = pokemon.name;
       let contentElement = document.createElement('p');
@@ -45,7 +47,6 @@
       modal.appendChild(contentElement);
       modalContainer.appendChild(modal);
       modalContainer.classList.add('is-visible');
-    pokemonRepository.loadDetails(pokemon).then(function () {
       console.log(pokemon);
     });
     // function to hide the modal
