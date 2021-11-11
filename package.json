@@ -1,0 +1,23 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "The application will display a list of data items, allowing the user to get a detailed view of each individual item on the list.  task number 1 pokedex project",
+  "main": "index.js",
+  "dependencies": {
+    "prettier": "^2.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abuomar85/Pokedex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abuomar85/Pokedex/issues"
+  },
+  "homepage": "https://github.com/abuomar85/Pokedex#readme"
+}
